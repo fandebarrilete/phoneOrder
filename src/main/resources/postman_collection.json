@@ -1,0 +1,57 @@
+{
+	"info": {
+		"_postman_id": "ad0564f1-932e-4046-afa6-a60f074c8b21",
+		"name": "ph",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "localhost:8081/phoneorder/",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"customer\": {\n\t\t\"name\" : \"Diego\",\n\t\t\"surname\" : \"Lopez\",\n\t\t\"email\": \"diego@lopez.es\"\n\t},\n\t\"listPhones\" : [{\n        \"id\": 1,\n        \"name\": \"iphone\",\n        \"price\": 1000.59,\n        \"description\": \"iphone\",\n        \"imagePath\": \"/photo.jpg\",\n        \"number\" : 2\n    },\n    {\n        \"id\": 2,\n        \"name\": \"samsung\",\n        \"price\": 100.59,\n        \"description\": \"galaxy note\",\n        \"imagePath\": \"/photo2.jpg\",\n        \"number\" : 3\n    }\n\t\t\n\t]\n}"
+				},
+				"url": {
+					"raw": "localhost:8081/phoneorder/",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"phoneorder",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/phonecatalog/",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "localhost:8080/phonecatalog/",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"phonecatalog",
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
