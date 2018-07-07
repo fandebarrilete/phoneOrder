@@ -1,0 +1,99 @@
+swagger: '2.0'
+
+# This is your document metadata
+info:
+  version: "1.0.0"
+  title: Phone Catalog Service
+host: localhost:8080
+# Describe your paths here
+paths:
+  /phoneorder/:
+    post:
+      tags:
+       - setPhoneOrder
+      summary: Process a phone order
+      description: |
+        Buy one phone from Catalog.
+      operationId: buyPhone
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          description: Data of client and phones ordered
+          required: true
+          schema:
+            $ref: "#/definitions/Order"
+      responses:
+        # Response code
+        '200':
+          description: Successful response
+          schema:
+            title: Order
+            $ref: '#/definitions/OrderAmount'
+        '501':
+          description: Not found
+          schema:
+            $ref: '#/definitions/InternalErrorResponse'
+definitions:
+  OrderAmount:
+    type: object
+    properties:
+      totalAmount:
+        type: number
+        format: double
+      listPhoneAmount:
+        type: array
+        items:
+          $ref: '#/definitions/PhoneAmount'
+  PhoneAmount:
+    allOf:
+      - $ref: '#/definitions/Phone'
+      - type: object
+        properties:
+          totalAmount:
+            type: number
+            format: double
+  Order:
+    type: object
+    properties:
+      customer:
+        $ref: '#/definitions/Customer'
+      listPhones:
+        type: array
+        items:
+          $ref: '#/definitions/Phone'
+  Phone:
+    type: object
+    properties:
+      id:
+        type: integer
+        format: int64
+      name:
+        type: string
+      price:
+        type: number
+        format: double
+      description:
+        type: string
+      imagePath:
+        type: string
+      number:
+        type: integer
+        format: int32
+  Customer:
+    type: object
+    properties:
+      name:
+        type: string
+      surname:
+        type: string
+      email:
+        type: string
+  InternalErrorResponse:
+    type: object
+    properties:
+      code:
+        type: string
+      message:
+        type: string
